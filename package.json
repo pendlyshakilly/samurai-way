@@ -1,5 +1,5 @@
 {
-  "name": "samurai-way",
+  "name": "packege.json",
   "version": "0.1.0",
   "private": true,
   "homepage": "",
@@ -62,5 +62,9 @@
     "@types/react-test-renderer": "17.0.1",
     "@types/redux-form": "8.3.3",
     "@types/uuid": "8.3.4"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/it-incubator/samurai-way.git",
+  "author": "pendlyshakilly <pendlyshakilly@gmail.com>",
+  "license": "MIT"
 }
