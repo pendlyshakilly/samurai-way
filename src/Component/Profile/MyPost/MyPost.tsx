@@ -2,6 +2,18 @@ import React from "react";
 import s from "./MyPost.module.css"
 import Post from "./Post/Post";
 
+export type TaskType = {
+     mess: string,
+     likeCount: number
+}
+
+
+
+const message: Array<TaskType> = [
+    {mess: 'its my first post', likeCount: 15},
+    {mess: 'yes it work', likeCount: 13},
+]
+
 
 
 const MyPost = () => {
@@ -10,11 +22,11 @@ const MyPost = () => {
             My posts
             <div>
                 <textarea/>
-                <button>Add post</button>
+                <div><button>Add post</button></div>
             </div>
             <div className={s.posts}>
-                <Post message={"its my first post"} like={15}/>
-                <Post message={"yes it work"} like={14}/>
+                <Post message={message}/>
+
             </div>
         </div>
     )

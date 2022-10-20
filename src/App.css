@@ -11,5 +11,10 @@
 
 }
 
+.App-wrapper-profile{
+    grid-area: c;
+    background-color: cornflowerblue;
+}
+
 
 
