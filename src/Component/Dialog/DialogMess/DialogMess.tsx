@@ -1,16 +1,17 @@
 import React from "react";
 import s from "../Dialog.module.css"
-import {MessageType} from "../Dialog";
+import {messageType} from "../../../State/State";
+import {stateType} from "../../../State/State";
 
 export type PropsType = {
-    mess: Array<MessageType>
+    mess: stateType
 }
 
 const DialogMess = (props: PropsType) => {
     return (
         <div>
             {
-                props.mess.map((m: MessageType) => {
+                props.mess.dialogs.message.map((m: messageType) => {
                     return (
                         <div>
                             <div className={s.dialog + ' ' + s.active}></div>

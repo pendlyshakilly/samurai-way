@@ -1,0 +1,53 @@
+type postsType = {
+    mess: string,
+    likeCount: number
+}
+type profilePageType = {
+    posts: Array<postsType>
+}
+export type namesType = {
+    name: string,
+    id: number
+
+}
+export type messageType = {
+    mess: string
+}
+type dialogsType = {
+    names: Array<namesType>
+    message: Array<messageType>
+}
+export type stateType = {
+    profilePage: profilePageType
+    dialogs: dialogsType
+}
+
+
+
+
+let State: stateType = {
+    profilePage: {
+        posts: [
+            {mess: 'its my first post', likeCount: 15},
+            {mess: 'yes it work', likeCount: 13},
+        ]
+    },
+    dialogs: {
+        names: [
+            {name: 'Silvia', id: 1},
+            {name: 'Lera', id: 2},
+            {name: 'Arsen', id: 3},
+            {name: 'Vadim', id: 4},
+            {name: 'Yevhen', id: 5},
+            {name: 'Vlad', id: 6},
+        ],
+
+        message: [
+            {mess: 'Hello'},
+            {mess: 'Hi how are you'},
+            {mess: 'Im fine'}
+        ]
+    }
+}
+
+export default State;

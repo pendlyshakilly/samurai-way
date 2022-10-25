@@ -1,9 +1,9 @@
 import React from "react";
 import s from "./Post.module.css"
-import {TaskType} from "../MyPost";
+import {stateType} from "../../../../State/State";
 
-export type PropsType= {
-    message: Array<TaskType>
+type PropsType = {
+    posts: stateType
 }
 
 const Post = (props: PropsType) => {
@@ -11,7 +11,7 @@ const Post = (props: PropsType) => {
         <div className={s.item}>
 
             {
-              props.message.map((m) => {
+              props.posts.profilePage.posts.map((m) => {
                     return (
                         <div>
                             <img src='https://as2.ftcdn.net/v2/jpg/01/88/16/11/1000_F_188161181_ECXsk62DZLJR611UniB6oScNJsyZVEdZ.jpg'/>

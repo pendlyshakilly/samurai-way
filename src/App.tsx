@@ -8,17 +8,21 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./Component/News/News";
 import Music from "./Component/Music/Music";
 import Settings from "./Component/Settings/Settings";
+import {stateType} from "./State/State";
 
+type PropsType = {
+    appState: stateType
+}
 
-function App() {
+function App(props: PropsType) {
     return (
         <BrowserRouter>
             <div className="App-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className='App-wrapper-profile'>
-                    <Route path={"/profile"} render={() => <Profile/>}/>
-                    <Route path={"/dialogs"} render={() => <Dialog/>}/>
+                    <Route path={"/profile"} render={() => <Profile posts={props.appState}/>} />
+                    <Route path={"/dialogs"} render={() => <Dialog names={props.appState} message={props.appState} />}/>
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>
                     <Route path={"/settings"} component={Settings}/>

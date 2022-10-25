@@ -1,22 +1,14 @@
 import React from "react";
 import s from "./MyPost.module.css"
 import Post from "./Post/Post";
+import {stateType} from "../../../State/State";
 
-export type TaskType = {
-     mess: string,
-     likeCount: number
+type PropsType = {
+    posts: stateType
 }
 
 
-
-const message: Array<TaskType> = [
-    {mess: 'its my first post', likeCount: 15},
-    {mess: 'yes it work', likeCount: 13},
-]
-
-
-
-const MyPost = () => {
+const MyPost = (props: PropsType) => {
     return (
         <div>
             My posts
@@ -25,7 +17,7 @@ const MyPost = () => {
                 <div><button>Add post</button></div>
             </div>
             <div className={s.posts}>
-                <Post message={message}/>
+                <Post posts={props.posts}/>
 
             </div>
         </div>

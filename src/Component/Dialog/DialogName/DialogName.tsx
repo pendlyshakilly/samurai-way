@@ -1,17 +1,18 @@
 import React from "react";
 import s from "../Dialog.module.css";
 import {NavLink} from "react-router-dom";
-import {NamesType} from "../Dialog";
+import {namesType, stateType} from "../../../State/State";
 
-export type PropsType = {
-    name: Array<NamesType>
+type NamesType = {
+    names: stateType,
 }
 
-const DialogNames = (props: PropsType) => {
+
+const DialogNames = (props: NamesType) => {
     return (
         <div>
             {
-                props.name.map((n: NamesType) => {
+                props.names.dialogs.names.map((n: namesType) => {
                     return (
                         <div>
                             <div className={s.dialog + ' ' + s.active}></div>
