@@ -18,6 +18,7 @@ export type messageType = {
     mess: string
 }
 type dialogsType = {
+    messageForNewMess: string
     names: Array<namesType>
     message: Array<messageType>
 }
@@ -38,6 +39,7 @@ let State: stateType = {
         ]
     },
     dialogs: {
+        messageForNewMess: '',
         names: [
             {name: 'Silvia', id: 1},
             {name: 'Lera', id: 2},
@@ -73,6 +75,16 @@ export const addMess = (message: string) => {
     }
 
     State.dialogs.message.push(newMess)
+    renderTree(State)
+}
+
+export const updateNewPostText = (newText: string) => {
+    State.profilePage.messageForNewPost = newText
+   renderTree(State)
+}
+
+export const updateNewMessText = (newMess: string) => {
+    State.dialogs.messageForNewMess = newMess
     renderTree(State)
 }
 

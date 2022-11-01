@@ -1,22 +1,27 @@
-import React from "react";
+import React, {ChangeEvent, ChangeEventHandler} from "react";
 import s from "../Dialog.module.css"
 import {messageType, stateType} from "../../../State/State";
 
 export type PropsType = {
     mess: stateType
     addMess: (message: string) => void
+    updateNewMessText: (newMess: string) => void
+
 }
 
 const DialogMess = (props: PropsType) => {
-    let newMessElement = React.createRef<HTMLTextAreaElement>();
+
 
 
     const adPost = () => {
-        if (newMessElement.current) {
-            props.addMess(newMessElement.current.value)
-        }
+        props.addMess(props.mess.dialogs.messageForNewMess)
+        props.updateNewMessText('')
     }
 
+
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    props.updateNewMessText(e.currentTarget.value)
+    }
 
     return (
         <div>
@@ -32,7 +37,7 @@ const DialogMess = (props: PropsType) => {
                 })
             }
             <div className={s.addMess}>
-                <textarea ref={newMessElement} />
+                <textarea value={props.mess.dialogs.messageForNewMess} onChange={onChangeHandler}/>
                 <button onClick={adPost}>add mess</button>
             </div>
 
