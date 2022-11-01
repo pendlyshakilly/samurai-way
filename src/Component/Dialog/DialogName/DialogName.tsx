@@ -11,6 +11,7 @@ type NamesType = {
 const DialogNames = (props: NamesType) => {
     return (
         <div>
+          <div>
             {
                 props.names.dialogs.names.map((n: namesType) => {
                     return (
@@ -22,8 +23,10 @@ const DialogNames = (props: NamesType) => {
                     )
                 })
             }
+          </div>
 
         </div>
+
 
     )
 }

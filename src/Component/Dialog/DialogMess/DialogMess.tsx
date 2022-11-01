@@ -8,6 +8,14 @@ export type PropsType = {
 }
 
 const DialogMess = (props: PropsType) => {
+    let newMess = React.createRef<HTMLTextAreaElement>()
+
+
+    const adPost = () => {
+      alert(newMess.current?.value)
+    }
+
+
     return (
         <div>
             {
@@ -21,6 +29,10 @@ const DialogMess = (props: PropsType) => {
                     )
                 })
             }
+            <div className={s.addMess}>
+                <textarea ref={newMess}/>
+                <button onClick={adPost}>add mess</button>
+            </div>
 
         </div>
 

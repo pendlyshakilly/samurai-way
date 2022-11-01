@@ -1,4 +1,5 @@
 type postsType = {
+    id: number,
     mess: string,
     likeCount: number
 }
@@ -28,8 +29,8 @@ export type stateType = {
 let State: stateType = {
     profilePage: {
         posts: [
-            {mess: 'its my first post', likeCount: 15},
-            {mess: 'yes it work', likeCount: 13},
+            {id: 1,  mess: 'its my first post', likeCount: 15},
+            {id: 2, mess: 'yes it work', likeCount: 13},
         ]
     },
     dialogs: {
