@@ -1,18 +1,20 @@
 import React from "react";
 import s from "../Dialog.module.css"
-import {messageType} from "../../../State/State";
-import {stateType} from "../../../State/State";
+import {messageType, stateType} from "../../../State/State";
 
 export type PropsType = {
     mess: stateType
+    addMess: (message: string) => void
 }
 
 const DialogMess = (props: PropsType) => {
-    let newMess = React.createRef<HTMLTextAreaElement>()
+    let newMessElement = React.createRef<HTMLTextAreaElement>();
 
 
     const adPost = () => {
-      alert(newMess.current?.value)
+        if (newMessElement.current) {
+            props.addMess(newMessElement.current.value)
+        }
     }
 
 
@@ -30,7 +32,7 @@ const DialogMess = (props: PropsType) => {
                 })
             }
             <div className={s.addMess}>
-                <textarea ref={newMess}/>
+                <textarea ref={newMessElement}/>
                 <button onClick={adPost}>add mess</button>
             </div>
 

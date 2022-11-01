@@ -51,4 +51,24 @@ let State: stateType = {
     }
 }
 
+
+
+export const addUser = (mess: string) => {
+    const newUser: postsType = {
+        id: 3,
+        mess: mess,
+        likeCount: 0,
+    }
+    alert(mess)
+    State.profilePage.posts.push(newUser)
+}
+
+export const addMess = (message: string) => {
+    const newMess: messageType = {
+        mess: message
+    }
+   alert(message)
+    State.dialogs.message.push(newMess)
+}
+
 export default State;

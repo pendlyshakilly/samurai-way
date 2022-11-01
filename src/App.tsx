@@ -8,10 +8,12 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./Component/News/News";
 import Music from "./Component/Music/Music";
 import Settings from "./Component/Settings/Settings";
-import {stateType} from "./State/State";
+import {addMess, stateType} from "./State/State";
 
 type PropsType = {
     appState: stateType
+    addUser: (mess: string) => void
+    addMess: (message: string) => void
 }
 
 function App(props: PropsType) {
@@ -21,8 +23,8 @@ function App(props: PropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='App-wrapper-profile'>
-                    <Route path={"/profile"} render={() => <Profile posts={props.appState}/>} />
-                    <Route path={"/dialogs"} render={() => <Dialog names={props.appState} message={props.appState} />}/>
+                    <Route path={"/profile"} render={() => <Profile posts={props.appState} addUser={props.addUser}/>} />
+                    <Route path={"/dialogs"} render={() => <Dialog names={props.appState} message={props.appState}  addMess={props.addMess}/>}/>
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>
                     <Route path={"/settings"} component={Settings}/>

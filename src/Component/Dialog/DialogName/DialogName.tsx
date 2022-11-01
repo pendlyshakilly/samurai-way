@@ -24,7 +24,6 @@ const DialogNames = (props: NamesType) => {
                 })
             }
           </div>
-
         </div>
 
 

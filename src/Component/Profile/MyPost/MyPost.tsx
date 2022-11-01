@@ -5,6 +5,7 @@ import {stateType} from "../../../State/State";
 
 type PropsType = {
     posts: stateType
+    addUser: (mess: string) => void
 }
 
 
@@ -12,7 +13,10 @@ const MyPost = (props: PropsType) => {
    let newPostElement  = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-       alert(newPostElement.current?.value)
+       if (newPostElement.current){
+           props.addUser(newPostElement.current?.value)
+       }
+
    }
 
     return (

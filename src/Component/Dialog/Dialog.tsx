@@ -7,6 +7,7 @@ import {stateType} from "../../State/State";
 type PropsType = {
     names: stateType,
     message: stateType
+    addMess: (message: string) => void
 }
 
 const Dialog = (props: PropsType) => {
@@ -16,7 +17,7 @@ const Dialog = (props: PropsType) => {
                 <DialogNames names={props.names}/>
             </div>
             <div className={s.messages}>
-               <DialogMess  mess={props.message}/>
+               <DialogMess  mess={props.message} addMess={props.addMess}/>
             </div>
         </div>
 
