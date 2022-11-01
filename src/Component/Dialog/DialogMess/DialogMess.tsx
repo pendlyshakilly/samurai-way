@@ -32,7 +32,7 @@ const DialogMess = (props: PropsType) => {
                 })
             }
             <div className={s.addMess}>
-                <textarea ref={newMessElement}/>
+                <textarea ref={newMessElement} />
                 <button onClick={adPost}>add mess</button>
             </div>
 

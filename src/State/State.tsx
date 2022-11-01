@@ -1,9 +1,12 @@
+import {renderTree} from "../render";
+
 type postsType = {
     id: number,
     mess: string,
     likeCount: number
 }
 type profilePageType = {
+    messageForNewPost: string
     posts: Array<postsType>
 }
 export type namesType = {
@@ -28,6 +31,7 @@ export type stateType = {
 
 let State: stateType = {
     profilePage: {
+        messageForNewPost: '',
         posts: [
             {id: 1,  mess: 'its my first post', likeCount: 15},
             {id: 2, mess: 'yes it work', likeCount: 13},
@@ -59,16 +63,17 @@ export const addUser = (mess: string) => {
         mess: mess,
         likeCount: 0,
     }
-    alert(mess)
     State.profilePage.posts.push(newUser)
+    renderTree(State)
 }
 
 export const addMess = (message: string) => {
     const newMess: messageType = {
         mess: message
     }
-   alert(message)
+
     State.dialogs.message.push(newMess)
+    renderTree(State)
 }
 
 export default State;

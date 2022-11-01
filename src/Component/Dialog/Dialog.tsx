@@ -17,7 +17,7 @@ const Dialog = (props: PropsType) => {
                 <DialogNames names={props.names}/>
             </div>
             <div className={s.messages}>
-               <DialogMess  mess={props.message} addMess={props.addMess}/>
+               <DialogMess  mess={props.message} addMess={props.addMess} />
             </div>
         </div>
 

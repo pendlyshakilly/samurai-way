@@ -15,6 +15,7 @@ const MyPost = (props: PropsType) => {
     const addPost = () => {
        if (newPostElement.current){
            props.addUser(newPostElement.current?.value)
+           newPostElement.current.value = ''
        }
 
    }

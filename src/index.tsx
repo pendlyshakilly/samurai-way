@@ -1,12 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import state, {addMess, addUser} from "./State/State";
+import state from "./State/State";
+import {renderTree} from "./render";
 
 
-
-ReactDOM.render(
-    <App appState={state} addUser={addUser} addMess={addMess}/>,
-  document.getElementById('root')
-);
+renderTree(state)
