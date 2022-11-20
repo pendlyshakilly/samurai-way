@@ -1,4 +1,6 @@
-import {renderTree} from "../render";
+let renderTree = (State: stateType) => {
+
+}
 
 type postsType = {
     id: number,
@@ -87,5 +89,10 @@ export const updateNewMessText = (newMess: string) => {
     State.dialogs.messageForNewMess = newMess
     renderTree(State)
 }
+
+export const subscriber = (observer: (state: stateType) => void) => {
+               renderTree = observer
+}
+
 
 export default State;
