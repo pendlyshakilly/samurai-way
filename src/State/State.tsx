@@ -28,71 +28,77 @@ export type stateType = {
     profilePage: profilePageType
     dialogs: dialogsType
 }
+export type StoreType = {
+    _State: stateType,
+    addUser: (mess: string) => void,
+    addMess: (message: string) => void,
+    updateNewPostText: (newText: string) => void,
+    updateNewMessText: (newMess: string) => void,
+    subscriber: (observer: (state: stateType) => void) => void
+    getState: () => stateType
+ }
 
+let Store: StoreType= {
+    _State: {
+        profilePage: {
+            messageForNewPost: '',
+            posts: [
+                {id: 1, mess: 'its my first post', likeCount: 15},
+                {id: 2, mess: 'yes it work', likeCount: 13},
+            ]
+        },
+        dialogs: {
+            messageForNewMess: '',
+            names: [
+                {name: 'Silvia', id: 1},
+                {name: 'Lera', id: 2},
+                {name: 'Arsen', id: 3},
+                {name: 'Vadim', id: 4},
+                {name: 'Yevhen', id: 5},
+                {name: 'Vlad', id: 6},
+            ],
 
-
-
-let State: stateType = {
-    profilePage: {
-        messageForNewPost: '',
-        posts: [
-            {id: 1,  mess: 'its my first post', likeCount: 15},
-            {id: 2, mess: 'yes it work', likeCount: 13},
-        ]
+            message: [
+                {mess: 'Hello'},
+                {mess: 'Hi how are you'},
+                {mess: 'Im fine'}
+            ]
+        }
     },
-    dialogs: {
-        messageForNewMess: '',
-        names: [
-            {name: 'Silvia', id: 1},
-            {name: 'Lera', id: 2},
-            {name: 'Arsen', id: 3},
-            {name: 'Vadim', id: 4},
-            {name: 'Yevhen', id: 5},
-            {name: 'Vlad', id: 6},
-        ],
+    getState(){
+        return this._State
+    },
+    addUser() {
+        const newUser: postsType = {
+            id: 3,
+            mess: this._State.profilePage.messageForNewPost,
+            likeCount: 0,
+        }
+        this._State.profilePage.posts.push(newUser)
+        renderTree(this._State)
+    },
+    addMess(message: string) {
+        const newMess: messageType = {
+            mess: message
+        }
 
-        message: [
-            {mess: 'Hello'},
-            {mess: 'Hi how are you'},
-            {mess: 'Im fine'}
-        ]
+        this._State.dialogs.message.push(newMess)
+        renderTree(this._State)
+    },
+    updateNewPostText(newText: string) {
+        this._State.profilePage.messageForNewPost = newText
+        renderTree(this._State)
+    },
+    updateNewMessText(newMess: string) {
+        this._State.dialogs.messageForNewMess = newMess
+        renderTree(this._State)
+
+
+    },
+    subscriber(observer: (state: stateType) => void) {
+        renderTree = observer
     }
 }
 
 
-
-export const addUser = (mess: string) => {
-    const newUser: postsType = {
-        id: 3,
-        mess: mess,
-        likeCount: 0,
-    }
-    State.profilePage.posts.push(newUser)
-    renderTree(State)
-}
-
-export const addMess = (message: string) => {
-    const newMess: messageType = {
-        mess: message
-    }
-
-    State.dialogs.message.push(newMess)
-    renderTree(State)
-}
-
-export const updateNewPostText = (newText: string) => {
-    State.profilePage.messageForNewPost = newText
-   renderTree(State)
-}
-
-export const updateNewMessText = (newMess: string) => {
-    State.dialogs.messageForNewMess = newMess
-    renderTree(State)
-}
-
-export const subscriber = (observer: (state: stateType) => void) => {
-               renderTree = observer
-}
-
-
-export default State;
+export default Store;

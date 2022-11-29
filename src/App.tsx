@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./Component/News/News";
 import Music from "./Component/Music/Music";
 import Settings from "./Component/Settings/Settings";
-import {addMess, stateType} from "./State/State";
+import {stateType} from "./State/State";
 
 type PropsType = {
     appState: stateType

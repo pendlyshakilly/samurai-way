@@ -1,17 +1,16 @@
-import React from 'react';
 import './index.css';
 import ReactDOM from "react-dom";
 import App from "./App";
-import State, {addMess, addUser, stateType, subscriber, updateNewMessText, updateNewPostText} from "./State/State";
-import state from "./State/State";
+import {stateType} from "./State/State";
+import Store from "./State/State";
 
 
-export const renderTree = (state: stateType) => {
+export const renderTree = () => {
     ReactDOM.render(
-        <App appState={State} addUser={addUser} addMess={addMess} updateNewPostText={updateNewPostText} updateNewMessText={updateNewMessText}/>,
+        <App appState={Store.getState()} addUser={Store.addUser.bind(Store)} addMess={Store.addMess.bind(Store)} updateNewPostText={Store.updateNewPostText.bind(Store)} updateNewMessText={Store.updateNewMessText.bind(Store)}/>,
         document.getElementById('root')
     );
 }
 
-renderTree(state)
-subscriber(renderTree)
+renderTree()
+Store.subscriber(renderTree)
