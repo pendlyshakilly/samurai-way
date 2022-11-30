@@ -6,14 +6,14 @@ import {stateType} from "../../State/State";
 
 type PropsType = {
     posts: stateType
-    addUser: (mess: string) => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: any) => void
+
 }
 
 const Profile = (props: PropsType) => {
     return <div className={s.profile}>
        <ProfileInfo/>
-        <MyPost posts={props.posts} addUser={props.addUser} updateNewPostText={props.updateNewPostText}/>
+        <MyPost posts={props.posts} dispatch={props.dispatch}/>
 
     </div>
 }

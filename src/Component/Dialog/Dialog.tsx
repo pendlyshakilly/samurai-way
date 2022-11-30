@@ -7,8 +7,8 @@ import {stateType} from "../../State/State";
 type PropsType = {
     names: stateType,
     message: stateType
-    addMess: (message: string) => void
-    updateNewMessText: (newMess: string) => void
+    dispatch: (action: string) => void
+
 
 }
 
@@ -19,7 +19,7 @@ const Dialog = (props: PropsType) => {
                 <DialogNames names={props.names}/>
             </div>
             <div className={s.messages}>
-               <DialogMess  mess={props.message} addMess={props.addMess} updateNewMessText={props.updateNewMessText} />
+               <DialogMess  mess={props.message} dispatch={props.dispatch}/>
             </div>
         </div>
 

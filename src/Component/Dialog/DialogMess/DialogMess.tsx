@@ -4,8 +4,7 @@ import {messageType, stateType} from "../../../State/State";
 
 export type PropsType = {
     mess: stateType
-    addMess: (message: string) => void
-    updateNewMessText: (newMess: string) => void
+    dispatch: (action: any) => void
 
 }
 
@@ -14,13 +13,13 @@ const DialogMess = (props: PropsType) => {
 
 
     const adPost = () => {
-        props.addMess(props.mess.dialogs.messageForNewMess)
-        props.updateNewMessText('')
+        props.dispatch({type: 'addMess'})
+        props.dispatch({type: 'updateNewMessText', newMess: ''})
     }
 
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updateNewMessText(e.currentTarget.value)
+    props.dispatch({type: 'updateNewMessText', newMess: e.currentTarget.value})
     }
 
     return (

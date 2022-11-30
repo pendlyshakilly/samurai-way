@@ -30,13 +30,10 @@ export type stateType = {
 }
 export type StoreType = {
     _State: stateType,
-    addUser: (mess: string) => void,
-    addMess: (message: string) => void,
-    updateNewPostText: (newText: string) => void,
-    updateNewMessText: (newMess: string) => void,
     subscriber: (observer: (state: stateType) => void) => void
     getState: () => stateType
- }
+    dispatch: (action: any) => void
+}
 
 let Store: StoreType= {
     _State: {
@@ -68,35 +65,32 @@ let Store: StoreType= {
     getState(){
         return this._State
     },
-    addUser() {
-        const newUser: postsType = {
-            id: 3,
-            mess: this._State.profilePage.messageForNewPost,
-            likeCount: 0,
-        }
-        this._State.profilePage.posts.push(newUser)
-        renderTree(this._State)
-    },
-    addMess(message: string) {
-        const newMess: messageType = {
-            mess: message
-        }
-
-        this._State.dialogs.message.push(newMess)
-        renderTree(this._State)
-    },
-    updateNewPostText(newText: string) {
-        this._State.profilePage.messageForNewPost = newText
-        renderTree(this._State)
-    },
-    updateNewMessText(newMess: string) {
-        this._State.dialogs.messageForNewMess = newMess
-        renderTree(this._State)
-
-
-    },
     subscriber(observer: (state: stateType) => void) {
         renderTree = observer
+    },
+    dispatch(action ){
+        if(action.type === 'addUser'){
+            const newUser: postsType = {
+                id: 3,
+                mess: this._State.profilePage.messageForNewPost,
+                likeCount: 0,
+            }
+            this._State.profilePage.posts.push(newUser)
+            renderTree(this._State)
+        }else if(action.type === 'addMess'){
+            const newMess: messageType = {
+                mess: this._State.dialogs.messageForNewMess
+            }
+            this._State.dialogs.message.push(newMess)
+            renderTree(this._State)
+        }else if(action.type === 'updateNewPostText'){
+            this._State.profilePage.messageForNewPost = action.newText
+            renderTree(this._State)
+        }else if(action.type === 'updateNewMessText'){
+            this._State.dialogs.messageForNewMess = action.newMess
+            renderTree(this._State)
+        }
+
     }
 }
 

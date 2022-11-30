@@ -5,18 +5,18 @@ import {stateType} from "../../../State/State";
 
 type PropsType = {
     posts: stateType
-    addUser: (mess: string) => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: any) => void
+
 }
 
 
 const MyPost = (props: PropsType) => {
     const addPost = () => {
-        props.addUser(props.posts.profilePage.messageForNewPost)
-        props.updateNewPostText('')
-       }
+        props.dispatch({type: 'addUser'})
+       props.dispatch({type: 'updateNewPostText', newText: ''})
+    }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-       props.updateNewPostText(e.currentTarget.value)
+      props.dispatch({type: 'updateNewPostText', newText: e.currentTarget.value})
 
 
     }

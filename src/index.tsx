@@ -7,7 +7,7 @@ import Store from "./State/State";
 
 export const renderTree = () => {
     ReactDOM.render(
-        <App appState={Store.getState()} addUser={Store.addUser.bind(Store)} addMess={Store.addMess.bind(Store)} updateNewPostText={Store.updateNewPostText.bind(Store)} updateNewMessText={Store.updateNewMessText.bind(Store)}/>,
+        <App appState={Store.getState()} dispatch={Store.dispatch.bind(Store)}/>,
         document.getElementById('root')
     );
 }
