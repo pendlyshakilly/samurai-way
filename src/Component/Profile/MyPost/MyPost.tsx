@@ -2,6 +2,7 @@ import React, {ChangeEvent, TextareaHTMLAttributes} from "react";
 import s from "./MyPost.module.css"
 import Post from "./Post/Post";
 import {stateType} from "../../../State/State";
+import {addUser, updateNewPostText} from "../../../State/Profile-reducer";
 
 type PropsType = {
     posts: stateType
@@ -10,13 +11,15 @@ type PropsType = {
 }
 
 
-const MyPost = (props: PropsType) => {
+
+
+    const MyPost = (props: PropsType) => {
     const addPost = () => {
-        props.dispatch({type: 'addUser'})
-       props.dispatch({type: 'updateNewPostText', newText: ''})
+        props.dispatch(addUser())
+       props.dispatch(updateNewPostText(''))
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.dispatch({type: 'updateNewPostText', newText: e.currentTarget.value})
+      props.dispatch(updateNewPostText(e.currentTarget.value))
 
 
     }

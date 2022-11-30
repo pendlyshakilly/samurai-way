@@ -1,8 +1,8 @@
-let renderTree = (State: stateType) => {
+import ProfileReducer from "./Profile-reducer";
+import DialogReducer from "./Dialog-reducer";
 
-}
 
-type postsType = {
+export type postsType = {
     id: number,
     mess: string,
     likeCount: number
@@ -33,7 +33,9 @@ export type StoreType = {
     subscriber: (observer: (state: stateType) => void) => void
     getState: () => stateType
     dispatch: (action: any) => void
+    _renderTree: (State: stateType) => void
 }
+
 
 let Store: StoreType= {
     _State: {
@@ -61,38 +63,24 @@ let Store: StoreType= {
                 {mess: 'Im fine'}
             ]
         }
-    },
+        },
+    _renderTree(State: stateType){},
     getState(){
         return this._State
     },
     subscriber(observer: (state: stateType) => void) {
-        renderTree = observer
+        this._renderTree = observer
     },
     dispatch(action ){
-        if(action.type === 'addUser'){
-            const newUser: postsType = {
-                id: 3,
-                mess: this._State.profilePage.messageForNewPost,
-                likeCount: 0,
-            }
-            this._State.profilePage.posts.push(newUser)
-            renderTree(this._State)
-        }else if(action.type === 'addMess'){
-            const newMess: messageType = {
-                mess: this._State.dialogs.messageForNewMess
-            }
-            this._State.dialogs.message.push(newMess)
-            renderTree(this._State)
-        }else if(action.type === 'updateNewPostText'){
-            this._State.profilePage.messageForNewPost = action.newText
-            renderTree(this._State)
-        }else if(action.type === 'updateNewMessText'){
-            this._State.dialogs.messageForNewMess = action.newMess
-            renderTree(this._State)
-        }
+        this._State.profilePage = ProfileReducer(this._State.profilePage, action);
+        this._State.dialogs = DialogReducer(this._State.dialogs, action);
+
+        this._renderTree(this._State)
 
     }
 }
+const addUser = () => ({type: 'addUser'})
+const updateNewPostText = (text: string) => ({type: 'updateNewPostText' , newText: text })
 
 
 export default Store;
